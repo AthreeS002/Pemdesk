@@ -75,10 +75,106 @@ class Ui_data(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
            super().__init__(parent)
            loader = QUiLoader()
-           self.ui = loader.load("coba.ui")
+           self.ui = loader.load("data.ui")
            self.setCentralWidget(self.ui)
 
+           self.ui.btn_delete.clicked.connect(self.hapus_data)
+           self.ui.btn_update.clicked.connect(self.update_data)
+           self.ui.btn_add.clicked.connect(self.add_data)
            self.ui.btn_exit.clicked.connect(self.close)
+
+    def add_data(self):
+        id = self.ui.edit_id.text()
+        nama = self.ui.edit_nama.text()
+        jumlah = self.ui.edit_jumlah.text()
+        status = self.ui.edit_status.text()
+
+        try:
+            mydb = mc.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="pemdesk"
+            )
+            mycursor = mydb.cursor()
+            sql = "INSERT INTO data (id_barang, nama_barang, jml_barang, status_barang) VALUES (%s, %s, %s, %s)"
+            val = (id, nama, jumlah, status)
+
+            mycursor.execute(sql, val)
+
+            mydb.commit()
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle("Sukses")
+            dlg.setText("Data tersimpan")
+            button = dlg.exec()
+
+            if button == QMessageBox.StandardButton.Ok:
+                print("OK!")
+
+        except mc.Error as err:
+            print("mysql exception: {}".format(err))
+
+    def update_data(self):
+        id = self.ui.edit_id.text()
+        nama = self.ui.edit_nama.text()
+        jumlah = self.ui.edit_jumlah.text()
+        status = self.ui.edit_status.text()
+
+        try:
+            mydb = mc.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="pemdesk"
+            )
+            mycursor = mydb.cursor()
+            sql = """UPDATE data SET id_barang = %s, nama_barang = %s, jml_barang = %s, status_barang = %s WHERE id_barang = %s"""
+            val = (id, nama, jumlah, status, id)
+
+            mycursor.execute(sql, val)
+
+            mydb.commit()
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle("Sukses")
+            dlg.setText("Update Data sukses")
+            button = dlg.exec()
+
+            if button == QMessageBox.StandardButton.Ok:
+                print("OK!")
+
+        except mc.Error as err:
+            print("mysql exception: {}".format(err))
+
+
+    def hapus_data(self):
+        id = self.ui.edit_id.text()
+
+        try:
+            mydb = mc.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="pemdesk"
+            )
+            mycursor = mydb.cursor()
+            sql = """DELETE from data WHERE id_barang = %s"""
+            val = (id,)
+
+            mycursor.execute(sql, val)
+
+            mydb.commit()
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle("Sukses")
+            dlg.setText("Hapus Data sukses")
+            button = dlg.exec()
+
+            if button == QMessageBox.StandardButton.Ok:
+                print("OK!")
+
+        except mc.Error as err:
+            print("mysql exception: {}".format(err))
+
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
