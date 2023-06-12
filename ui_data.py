@@ -22,7 +22,8 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(705, 478)
+        Form.resize(700, 500)
+        Form.setMaximumSize(QSize(700, 500))
         self.verticalLayoutWidget = QWidget(Form)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
         self.verticalLayoutWidget.setGeometry(QRect(39, 120, 411, 321))

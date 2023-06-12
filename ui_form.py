@@ -47,7 +47,7 @@ class Ui_Widget(object):
 
         self.verticalLayoutWidget_2 = QWidget(Widget)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
-        self.verticalLayoutWidget_2.setGeometry(QRect(20, 190, 291, 41))
+        self.verticalLayoutWidget_2.setGeometry(QRect(20, 190, 291, 48))
         self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -63,7 +63,7 @@ class Ui_Widget(object):
 
         self.verticalLayoutWidget_3 = QWidget(Widget)
         self.verticalLayoutWidget_3.setObjectName(u"verticalLayoutWidget_3")
-        self.verticalLayoutWidget_3.setGeometry(QRect(330, 109, 160, 131))
+        self.verticalLayoutWidget_3.setGeometry(QRect(330, 109, 160, 181))
         self.verticalLayout_3 = QVBoxLayout(self.verticalLayoutWidget_3)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -75,6 +75,13 @@ class Ui_Widget(object):
         self.btn_login.setFont(font1)
 
         self.verticalLayout_3.addWidget(self.btn_login)
+
+        self.btn_register = QPushButton(self.verticalLayoutWidget_3)
+        self.btn_register.setObjectName(u"btn_register")
+        self.btn_register.setMaximumSize(QSize(16777215, 50))
+        self.btn_register.setFont(font1)
+
+        self.verticalLayout_3.addWidget(self.btn_register)
 
         self.btn_exit = QPushButton(self.verticalLayoutWidget_3)
         self.btn_exit.setObjectName(u"btn_exit")
@@ -95,6 +102,7 @@ class Ui_Widget(object):
         self.label_2.setText(QCoreApplication.translate("Widget", u"Username", None))
         self.edit_password.setText(QCoreApplication.translate("Widget", u"Password", None))
         self.btn_login.setText(QCoreApplication.translate("Widget", u"Login", None))
+        self.btn_register.setText(QCoreApplication.translate("Widget", u"Register", None))
         self.btn_exit.setText(QCoreApplication.translate("Widget", u"Exit", None))
     # retranslateUi
 
